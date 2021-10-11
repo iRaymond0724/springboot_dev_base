@@ -1,4 +1,4 @@
-package com.dumbo.springboot.component.Impl;
+package com.dumbo.springboot.domain.model;
 
 import com.dumbo.springboot.component.FileManager;
 import com.dumbo.springboot.customException.EmptyFileException;
