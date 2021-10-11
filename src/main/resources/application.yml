@@ -1,0 +1,25 @@
+server:
+  port: 11721
+  servlet:
+    context-path: /MyFirstSpringBoot
+
+spring:
+  resources:
+    static-locations: file:${uploadPath.base}
+  mvc:
+    static-path-pattern: ${static-resource-path-prefix.base}**
+
+resource-path:
+  image: image/
+
+# use for api
+static-resource-path-prefix:
+  # base 才是絕對路徑，剩下的都是相對路徑
+  base: /static/
+  # 資料夾後，才有斜線
+  image: ${static-resource-path-prefix.base}${resource-path.image}
+
+# use for resource
+uploadPath:
+  base: /home/iraymond/Idea/springboot_dev_base/data/
+  image: ${uploadPath.base}${resource-path.image}
