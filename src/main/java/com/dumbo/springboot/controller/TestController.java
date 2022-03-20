@@ -1,6 +1,6 @@
 package com.dumbo.springboot.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.log4j.Log4j2;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.ZipParameters;
@@ -9,18 +9,16 @@ import net.lingala.zip4j.model.enums.EncryptionMethod;
 import org.json.JSONObject;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.*;
 import java.util.HashMap;
 
 import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM;
-
+@Log4j2
 @Controller
 public class TestController {
 
@@ -33,17 +31,17 @@ public class TestController {
         JSONObject updateShareInfo = new JSONObject();
         updateShareInfo.put("ShareRecordKey", "111");
         updateShareInfo.put("Record", recordInfoHashMap);
-        System.out.println(updateShareInfo);
+        log.info(updateShareInfo);
     }
 
-    @RequestMapping(value="/",method = RequestMethod.GET)
+    @GetMapping(value="/")
     @ResponseBody
     public String Test() {
         System.out.println("Test API");
         return "Test Successful";
     }
 
-    @RequestMapping(value="/zip",method = RequestMethod.GET)
+    @GetMapping(value="/zip")
     @ResponseBody
     public ResponseEntity<Resource> zip() throws ZipException, FileNotFoundException {
         ZipParameters zipParameters = new ZipParameters();
